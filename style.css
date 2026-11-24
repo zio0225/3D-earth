@@ -1,0 +1,126 @@
+* { box-sizing: border-box; }
+
+html, body, #app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+body {
+  background: #000;
+  color: #eee;
+  font-family: Arial, "Noto Sans KR", sans-serif;
+}
+
+#scene-container { position: absolute; inset: 0; }
+#scene-container canvas { display: block; width: 100%; height: 100%; }
+
+.page-title {
+  position: absolute;
+  top: 24px;
+  left: 28px;
+}
+
+.page-title h1 { margin: 0; font-size: 22px; }
+.page-title p { margin: 6px 0 0; color: #aaa; font-size: 14px; }
+
+.readout {
+  position: absolute;
+  left: 28px;
+  bottom: 24px;
+  display: flex;
+  gap: 24px;
+}
+
+.readout div { display: flex; flex-direction: column; gap: 4px; }
+.readout-label { color: #aaa; font-size: 12px; }
+.readout strong { font-size: 14px; }
+
+.panel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  width: 300px;
+  padding: 20px;
+  overflow-y: auto;
+  background: #151515;
+  border: 1px solid #555;
+}
+
+.panel-head { padding-bottom: 12px; border-bottom: 1px solid #444; }
+.panel h2 { margin: 0; font-size: 20px; }
+
+.section-label {
+  margin: 22px 0 14px;
+  color: #bbb;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.control { margin-bottom: 18px; }
+
+.toggle-row, .label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.toggle-row { margin: 18px 0; }
+.toggle-row.compact { padding-top: 16px; border-top: 1px solid #444; }
+.control label { font-size: 14px; }
+.control small { display: block; margin-top: 4px; color: #999; font-size: 12px; }
+output { color: #ccc; font-size: 13px; }
+
+input[type="range"] { width: 100%; margin-top: 10px; }
+input[type="checkbox"] { width: 18px; height: 18px; }
+
+button {
+  width: 100%;
+  padding: 10px;
+  color: #eee;
+  background: #333;
+  border: 1px solid #666;
+  cursor: pointer;
+}
+
+button:hover { background: #444; }
+.hint { margin: 14px 0 0; color: #aaa; text-align: center; font-size: 12px; }
+
+#loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+#loading span { display: none; }
+#loading.done { display: none; }
+
+#error {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  max-width: 600px;
+  padding: 12px;
+  color: #fff;
+  background: #8b2020;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 700px) {
+  .page-title { top: 16px; left: 16px; }
+  .panel {
+    top: auto;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    width: auto;
+    height: 45vh;
+  }
+  .readout { display: none; }
+}

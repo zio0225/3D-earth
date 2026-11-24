@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NOAA ETOPO 실제 고도 데이터를 이용한 Three.js 3D 지구 시뮬레이션">
+  <title> 3D 지구 시뮬레이션</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app" aria-label="3D 지구 시뮬레이션">
+    <div id="scene-container"></div>
+
+    <header class="page-title">
+      <h1>3D 지구 시뮬레이션</h1>
+      <p>NOAA 고도 데이터 적용</p>
+    </header>
+
+    <section class="readout" aria-label="현재 시뮬레이션 상태">
+      <div><span class="readout-label">회전 속도</span><strong id="speed-readout">0.060 rad/s</strong></div>
+      <div><span class="readout-label">지형 배율</span><strong id="height-readout">1.00×</strong></div>
+      <div><span class="readout-label">고도 자료</span><strong>NOAA ETOPO5</strong></div>
+    </section>
+
+    <aside class="panel" aria-label="시뮬레이션 설정">
+      <div class="panel-head">
+        <h2>설정</h2>
+      </div>
+
+      <div class="control toggle-row">
+        <div><label for="auto-rotate">자동 회전</label><small>Y축 자전 애니메이션</small></div>
+        <input id="auto-rotate" type="checkbox" checked>
+      </div>
+
+      <div class="section-label">회전</div>
+      <div class="control">
+        <div class="label-row"><label for="rotation-speed">회전 속도</label><output id="rotation-value">0.060</output></div>
+        <input id="rotation-speed" type="range" min="0" max="0.2" step="0.005" value="0.06">
+      </div>
+
+      <div class="section-label">지형 표현</div>
+      <div class="control">
+        <div class="label-row"><label for="height-scale">지형 높이 배율</label><output id="height-value">1.00×</output></div>
+        <input id="height-scale" type="range" min="0" max="3" step="0.05" value="1">
+      </div>
+      <div class="control">
+        <div class="label-row"><label for="bump-scale">범프 강도</label><output id="bump-value">0.055</output></div>
+        <input id="bump-scale" type="range" min="0" max="0.15" step="0.005" value="0.055">
+      </div>
+
+      <div class="section-label">태양 방향</div>
+      <div class="control">
+        <div class="label-row"><label for="sun-azimuth">방위각</label><output id="sun-azimuth-value">35°</output></div>
+        <input id="sun-azimuth" type="range" min="-180" max="180" step="1" value="35">
+      </div>
+      <div class="control">
+        <div class="label-row"><label for="sun-elevation">고도각</label><output id="sun-elevation-value">18°</output></div>
+        <input id="sun-elevation" type="range" min="-70" max="70" step="1" value="18">
+      </div>
+
+      <div class="control toggle-row compact">
+        <label for="wireframe">와이어프레임</label>
+        <input id="wireframe" type="checkbox">
+      </div>
+
+      <button id="reset-camera" type="button">카메라 초기화</button>
+      <p class="hint"><b>DRAG</b> 지구 회전 · <b>SCROLL</b> 확대/축소</p>
+    </aside>
+
+    <div id="loading" role="status"><span></span><p>로딩 중</p></div>
+    <div id="error" role="alert" hidden></div>
+  </main>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
